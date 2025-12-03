@@ -1,0 +1,51 @@
+---
+title: "About Owen"
+---
+
+## Background
+
+I'm a third year student at VIU, developing skills 
+in data analysis, business intelligence, and statistical computing. I am an accounting major, though I began my university education at the University of Alberta studying computer science. I decided to move home and switch programs into business to follow in the footsteps of my grandfather whom I admire greatly. Outside of school I work on music through DAWs and plan to pursue that aspect of myself to the fullest extent upon completing my degree.
+
+## Skills & Tools
+
+**Analysis:**
+
+- R for data analysis
+- Data cleaning and transformation
+- Statistical analysis and interpretation
+
+**Visualization & Reporting:**
+
+- ggplot2 for professional visualizations
+- R Markdown for reproducible reports
+- Data storytelling for business audiences
+
+**Data Sources:**
+
+- CSV file processing
+- Government open data (via APIs)
+- Business performance data sets
+
+## Education
+
+**VIU** - Business & Administration Program  
+*Expected Graduation: [2028]*
+
+Relevant Coursework:
+
+- Data Analysis for E-Management
+- Business Statistics
+- Information Systems
+
+## Contact
+
+Feel free to connect with me:
+
+- Email: [oplehtovaara.university@gmail.com](mailto:oplehtovaara.university@gmail.com)
+- LinkedIn: [Owen Lehtovaara](https://linkedin.com/in/owen-lehtovaara-8852ab393)
+- GitHub: [oplehtovaara](https://github.com/oplehtovaara)
+
+---
+
+[← Back to Home](index.html)

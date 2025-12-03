@@ -1,0 +1,127 @@
+---
+title: "Statistical Exploration: Business Insights Report"
+---
+
+# Data Exploration and Setup
+
+```{r echo = TRUE}
+# Loading the library into the file
+library(ggplot2)
+getwd()
+# Loading the dataset
+business_data <- read.csv("business_performance.csv")
+```
+
+## Dataset Analysis
+
+```{r echo = TRUE}
+# Examining the dataset
+str(business_data)
+
+# Gathering a Summary of the Dataset
+summary(business_data)
+```
+
+**Analysis of Data:** From the data, we can determine that there are 7 variables and a total of 48 observations. The first two variables 'quarter' and 'channel' are both "chr", or character data. 'Region' is also character data with the other four variables being integer, or number-based data.
+
+**Key Summary Points:** Upon gathering the dataset summary, we can see that revenues range from \$150,231 and 412,125, with the median being 263,544.
+
+## Total Revenue by Channel
+
+```{r echo = TRUE}
+# Calculating the Total Revenue by Channel
+aggregate(revenue ~ channel, data = business_data, sum)
+```
+
+**Revenue By Channel:** We can see that between the three channels (Mobile, Online, and Retail), Online is the channel that generates the most revenue at \$ 5,571,130. Comparatively, the Mobile channel generated 4,158,056 dollars, and the Retail channel generated 2,693,023 dollars in revenue.
+
+## Average Customers Per Quarter
+
+```{r echo = TRUE}
+# Calculating the Average customers per quarter
+aggregate(customers ~ quarter, data = business_data, mean)
+```
+
+**Customers Per Quarter:** In totality, the quarter with the highest average number of customers was Q3 with roughly 1173 customers per quarter. The runner up was Q2 with approximately 1154, then followed by Q4 with 1111, and Q1 with 1069.
+
+## Average Revenue Per Customer
+
+```{r echo = TRUE}
+# Creating a new variable to store revenue per customer
+business_data$revenue_per_customer <- business_data$revenue / business_data$customers
+
+# Calculating the Average Revenue per customer
+aggregate(business_data$revenue_per_customer ~ channel, data = business_data, mean)
+```
+
+**Analysis:** We can derive that the channel with the highest average revenue per customer is the 'Retail' channel with an average revenue per customer of \~314 dollars. This is significantly higher than the second most in the 'online' channel at \~224 dollars, and the lowest being 'Mobile' at \~203 dollars spent per customer.
+
+*It may be relevant to note the large gap in average money spent per customer between the Online and Retail channels. This implies that consumers are spending more money when shopping in a Retail setting compared to online on mobile environments. Clear areas of improvement can be seen, and generating more customers in physical retail locations should be encouraged.*
+
+# Business Visualizations
+
+## Total Revenue By Channel Chart
+
+```{r echo = TRUE}
+# Storing the Total Revenue per Channel in a new variable
+channel_totals <- aggregate(revenue ~ channel, data = business_data, sum)
+
+# Generating A Bar Chart
+ggplot(channel_totals, aes(x = channel, y = revenue)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Total Revenue by Channel", 
+       x = "Sales Channel", y = "Revenue ($)")
+```
+
+**Chart Analysis:** As shown by the chart above, the area with the lowest total revenue per channel is the 'Retail' channel. If one was looking to attempt to equalize the three channels then more investment into the 'Retail' channel may be appropriate to potentially generate more revenue. However, if one were looking to maximize profits, investing more into the already well selling Online sector may be a good option. Spending more money on marketing and website development, etc.., could potentially generate even more revenue.
+
+## Revenue Per Customer Plot
+
+```{r echo = TRUE}
+# Generating a Scatter Plot
+ggplot(business_data, aes(x = customers, y = revenue, color = channel)) +
+  geom_point(size = 3) +
+  labs(title = "Customer Count vs Revenue by Channel",
+       x = "Number of Customers", y = "Revenue ($)")
+```
+
+**Analysis:** Based on the scatter plot above, we can see that the online channel appears to be the most efficient channel at converting customers to revenue. This is due to the higher volume of customers, and the highest level of revenue reached for each value. Comparatively, the 'Retail' Category appears to generate less revenue per customer, with lower volumes of customers. This indicates that the 'Retail' channel is perhaps, rather inefficient.
+
+# Strategic Recommendations
+
+```{r echo = TRUE}
+# Establishing subsets for each channel
+ch1 <- business_data[business_data$channel == "Mobile",]
+ch2 <- business_data[business_data$channel == "Online",]
+ch3 <- business_data[business_data$channel == "Retail",]
+
+ch1_acr <- ch1$revenue / ch1$customers
+ch2_acr <- ch2$revenue / ch2$customers
+ch3_acr <- ch3$revenue / ch3$customers
+
+# Creating a table
+business_table <- data.frame(
+  Channel = c("Mobile", "Online", "Retail"),
+  Total_Revenue = c( 
+             sum(ch1$revenue),
+             sum(ch2$revenue),
+             sum(ch3$revenue)
+             ),
+  Average_Customers = c(
+             mean(ch1$customers),
+             mean(ch2$customers),
+             mean(ch3$customers)
+             ),
+  Conversion_Rate = c(
+             mean(ch1_acr),
+             mean(ch2_acr),
+             mean(ch3_acr)
+             )
+             )
+
+business_table
+```
+
+**Strategic Recommendations:** Given the above table, we can derive a few recommendations. First, the 'Retail' channel needs to be generating more revenue. We can see that the average customer spends \~315 dollars with that channel (the highest customer conversion rate), though the total revenue is significantly lower (2,693,023); primarily due to the lesser volume of customers. As such, the main focus of this business should be driving more customers into the retail channel, where they may spend more money, and drive up profits. Ideally, increasing the customer conversion rates on both the 'Mobile' and 'Online' channels would be another focus of strategy. Due to the higher customer volume in both channels (203 and 224 respectively), increasing the conversion rate would generate a significant boost in profits for the business.
+
+[← Back to Projects](projects.html) | [← Back to Home](index.html)

@@ -1,0 +1,203 @@
+---
+title: "Business Data Performance Analysis Report"
+---
+
+# Data Import and Exploration
+
+```{r echo = TRUE}
+
+# Creating Sample Dataset
+regional_sales <- data.frame(
+  region = c("North", "South", "East", "West", "North", "South", "East", "West",
+             "North", "South", "East", "West", "North", "South", "East", 
+             "North", "South","North"),  
+  quarter = c(rep(c("Q1", "Q2", "Q3", "Q4"), each = 4), "Q4", "Q4"),
+  revenue = c(125000, 98000, 115000, 102000, 
+              138000, 105000, 128000, 118000,
+              142000, 89000, 135000, 125000,
+              155000, 112000, 148000, 165000, 
+              120000, 91250),
+  customers = c(450, 380, 420, 395, 
+                485, 415, 465, 445,
+                520, 350, 485, 470,
+                575, 425, 545, 590, 435,324)
+)
+
+```
+
+## Observations and Variable Analysis
+
+```{r echo = TRUE}
+# Generating a string representation of the dataset
+str(regional_sales)
+```
+
+**Analysis:** Given the above report, we can see that there are 18 observations of 4 variables. Two of the variables are the character (chr) data type, and the other two variables are the number (num) data type.
+
+## Revenue Range Analysis
+
+```{r echo = TRUE}
+# Gathering the first few rows of information
+head(regional_sales)
+
+# Generating a summary report for the dataset
+summary(regional_sales)
+```
+
+**Analysis:** As shown from the report above, the range of revenue values falls between a minimum of \$89,000-165,000, indicating a relatively large range of varying revenues. This is across multiple regions; of which, all four are represented in the above report, with North and South being the predominate regions.
+
+## Unique Regions & Quarters
+
+```{r echo = TRUE}
+# Gathering all unique values within the region subset
+unique(regional_sales$region)
+
+# Gathering all unique values within the quarter subset
+unique(regional_sales$quarter)
+```
+
+**Report Analysis:** There are four regions and four quarters that can be identified. Regions designated: "North", "South", "East", and "West"; whilst quarters are designated as Q1-4.Each region likely has a value designation of revenue and customers per each quarter, further organizing the data.
+
+## Total Number Of Customers
+
+```{r echo = TRUE}
+# Summate the total customers for the business
+sum(regional_sales$customers)
+```
+
+*Additionally, we can see that the total number of customers across all regions and quarters is 8174. This helps to view all avenues of revenue and customer engagement in totality, allowing for high performing regions to compensate for lower performing regions*
+
+# Data Quality Assessment
+
+## Missing Values Check
+
+```{r echo = TRUE}
+# Checking for the presence of any missing values within the dataset
+sum(is.na(regional_sales))
+```
+
+*After a quick check, we can conclude that there are no missing variables in the data set. This means every variable has an assigned value which indicates a complete data set. It is important to perform this check regardless, as missing data can skew results, and misaccurately represent information in summaries and reports.*
+
+## Frequency Table Analysis
+
+**Regions Table:**
+
+```{r echo = TRUE}
+# Generating a frequency table for the region variable
+table(regional_sales$region)
+```
+
+**Quarters Table:**
+
+```{r echo = TRUE}
+# Generating a frequency table for the quarter variable
+table(regional_sales$quarter)
+```
+
+**Table Analysis:** The data shown in the above tables identifies a major flaw in the data set. As there are four regions and four quarters, there should be four occurrences for each category within the subset. Instead, we can see that there 6 occurrences in the 'North' region, 5 in the 'South' region, and only 3 in the 'West' region. Similarly, we can see that 'Q4' has two too many occurrences within it's set. As such, there is potentially some error within the business operations since there are primarily too many instances of data reported, and one region missing an occurrence (potentially miss-assigned to another region).
+
+## Poor Performing Outliar(s)
+
+```{r echo = TRUE}
+# Sifting through the dataset for all regions and quarters showing poor performance
+regional_sales[regional_sales$revenue < 90000, ]
+```
+
+**Analysis:** We can see that there is only one region considered to have poor performance, that is the southern region during the third quarter. It reported a revenue of \$89,000, which also is the minimum range value for the dataset making it most certainly the lowest revenue across all regions and quarters.
+
+# Business Logic Analysis
+
+## High Performing Regions & Quarters
+
+```{r echo = TRUE}
+# Filtering all high performing regions and quarters out of the dataset
+regional_sales[regional_sales$revenue > 140000, ]
+
+# Calculating the number of high performing instances
+nrow(regional_sales[regional_sales$revenue > 140000, ])
+```
+
+**Analysis:** As derived from the above summary, we can see that there were four regions in particular that over-performed. Three of the reported revenues came from the northern region, with two of those from Q4 (an apparent extra reported revenue stream), and one from the third quarter. The other high performing region was the eastern region during the fourth quarter. This indicates that Q4 was had three exceedingly high performing regions, and is perhaps the best performing quarter for the business.
+
+## Fourth Quarter Outliars With High Revenue and High Customer Count
+
+```{r echo = TRUE}
+# Finds all Q4 instances with revenue greater than 130,000 and more than 500 customers
+regional_sales[regional_sales$revenue > 130000 & regional_sales$customers > 500 & regional_sales$quarter == "Q4", ]
+```
+
+**Results Analysis:** There are three records within Q4 that have revenues greater than \$130,000, and customer numbers greater than 500, two in the northern region, and one in the eastern region. This indicates that end of year performance was relatively strong overall, but especially strong the the northern and eastern regions. It also provides insight into the correlation between revenue and customer count, which appears to have a positive relationship.
+
+## North And East Regional Average Revenue
+
+```{r echo = TRUE}
+# Storing the new data subset within a variable
+north_east <- regional_sales[regional_sales$region == "North" | regional_sales$region == "East", ]
+
+# Taking the mean revenues from the shrunk dataset
+mean(north_east$revenue)
+
+# Getting the original average revenue
+mean(regional_sales$revenue)
+```
+
+*We can see that the regional average revenue for the North and East regions combined is \$134,225. Comparatively, the average revenue across all regions is \$122,847.2. This indicates that the North and East regions are quite high performing, as the other regions bring the average down.*
+
+## Business Performance Flag
+
+```{r echo = TRUE}
+# Creating a subset with only the specified low performing records
+low_performing <- regional_sales[regional_sales$revenue < 100000 | regional_sales$customers < 400, ]
+
+# Calculating the percentage based on the number of low performing records within the subset divided by the number of total records in the full set
+percentage <- nrow(low_performing)/nrow(regional_sales)*100
+```
+
+**Analysis:** Based on the above findings and calculations, we can see that there are four records with revenue below \$100,000 or customer counts below 400. The resulting percentage of the total record set is represented at approximately 22.22%.
+
+# Data Aggregation and Business Insights
+
+## Total Revenue By Region
+
+```{r echo = TRUE}
+# Aggregates the data to calculate the total revenue for each region
+aggregate(revenue ~ region, data = regional_sales, sum)
+```
+
+*We can see that the region with the highest total revenue across all quarters this year was the northern region with \$816,250 in revenues. Comparatively, the next best region was the Eastern region with \$526,000 in revenue*
+
+## Average Customers Per Quarter
+
+```{r echo = TRUE}
+# Aggregates the data to calculate the average customers per quarter for each region
+aggregate(customers ~ quarter, data = regional_sales, mean)
+```
+
+*The fourth quarter is the region with the highest mean customer count at 482.33. Perhaps the reason for the high performance during the fourth quarter is due to the time of year, perhaps the business sells Christmas supplies, or summer/beach items indicating that a certain time frame would naturally attract more customer interaction.*
+
+# Executive Summary Creation
+
+```{r echo = TRUE}
+# Establishing subsets for each quarter
+quarter_one <- regional_sales[regional_sales$quarter == "Q1",]
+quarter_two <- regional_sales[regional_sales$quarter == "Q2",]
+quarter_three <- regional_sales[regional_sales$quarter == "Q3",]
+quarter_four <- regional_sales[regional_sales$quarter == "Q4",]
+
+# Creating a table for the executive summary
+executive_table <- data.frame(
+  Measures = c("Total Revenue", "Average Revenue Q1", "Average Revenue Q2", "Average Revenue Q3","Average Revenue Q4", "Number of High Performance Records"),
+  Values = c(sum(regional_sales$revenue), 
+             mean(quarter_one$revenue),
+             mean(quarter_two$revenue),
+             mean(quarter_three$revenue),
+             mean(quarter_four$revenue),
+             nrow(regional_sales[regional_sales$revenue > 140000, ])
+             )
+)
+executive_table
+```
+
+**Recommendation:** Based on the large report above, and the data extracted from it, some conclusions can be withdrawn that may influence business decisions. The first main conclusion is that the northern region and fourth quarter are evidently the strongest performing in their respective categories. The northern quarter bolstered \$816,250 in revenue, and the fourth quarter had three records with over 130,000 dollars in revenue in addition to an average customer count of 482.33. This may indicate that those regions are doing just fine, and will require minimal adjustments to be made. Instead, looking at what made those regions successful and applying it to the weaker southern and western regions could improve company numbers overall, and increase revenue greatly.
+
+[← Back to Projects](projects.html) | [← Back to Home](index.html)
