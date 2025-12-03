@@ -2,23 +2,48 @@
 title: "My Projects"
 ---
 
-## Data Analysis Projects
+## Featured Projects
 
-Here are some of my key projects demonstrating various data analysis skills.
+Includes two of my projects completed through the MGMT 230 course. Skills demonstrated include: technical acumen, statistical analysis, data interpretation and visualization, and professional compilation.
+
+### Sample Work
+
+Example of a Generated Visualization:
+```{r sample-viz, echo=FALSE, fig.width=8, fig.height=5}
+
+library(ggplot2)
+
+business_data <- read.csv("business_performance.csv")
+
+# Generating a Scatter Plot
+ggplot(business_data, aes(x = customers, y = revenue, color = channel)) +
+  geom_point(size = 3) +
+  labs(title = "Customer Count vs Revenue by Channel",
+       x = "Number of Customers", y = "Revenue ($)")
+```
 
 ### Project 1: Business Performance Dashboard
 
 **Objective:** Clean and analyze operational data to identify performance 
 patterns
 
+**My Approach:**
+
+- Utilizing Provided Framework to Complete Data Analysis
+- Creating sub sets to organize and use data effectively
+- Generating Clear Tables and Summaries to Optimize Data
+
 **Key Skills:**
 
-- CSV data processing
 - Missing data handling
 - Data visualization
-- Executive reporting
+- Code manipulation
+- Exploratory data analysis
+- Correlation analysis
+- Professional visualization
+- Insight communication
 
-[View detailed analysis →](project1.html)
+[📊 View detailed analysis →](project1.html)
 
 ---
 
@@ -26,15 +51,21 @@ patterns
 
 **Objective:** Explore relationships in real-world data sets
 
+**My Approach:**
+
+- Extract and Organize Data from CSV Sourcing.
+- Optimize Data
+- Generate Outputs Such as Executive Summaries to Portray Findings
+
 **Key Skills:**
 
-- Exploratory data analysis
-- Correlation analysis
-- Professional visualization
-- Insight communication
+- Executive Data Reports
+- CSV Importation and Use
+- Data Visualization
+- Technical Acumen & Development
 
-[View detailed analysis →](project2.html)
+[📊 View detailed analysis →](project2.html)
 
 ---
 
-[← Back to Home](index.html)
+[← Back to Home 🏠](index.html)

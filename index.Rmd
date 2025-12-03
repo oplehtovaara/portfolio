@@ -4,28 +4,30 @@ title: "Welcome To Owen's Portfolio!"
 
 ## Hello and Welcome!
 
-My name is Owen Lehtovaara, and this is my personal portfolio. Included, you'll find 
-projects showcasing my skills in:
+My name is Owen Lehtovaara, and This is my personal portfolio. Included, you'll find projects showcasing my skills in:
 
-- Data cleaning and transformation
-- Statistical analysis
-- Data visualization with ggplot2
-- Professional reporting with R Markdown
+📊 Data Analysis: Data cleaning and transformation. Analysis of Business Data 📈 Data Visualization: Generating Concise, Clean, and Visually Appealing Charts using ggplot2 📝 Reporting: Creating Professional Reports to Convey Data & Findings Effectively 🔍 Problem Solving: Using Statistical & Critical Thinking to Solve Problems and Challenges
 
 ### Featured Projects
 
 Throughout this portfolio, you'll see analyses covering:
 
-- **Business Performance:** Analyzing operational data for insights
-- **Data Visualization:** Creating compelling charts and graphics
+-   **Business Performance:** Analyzing operational data to draw insights, and create strategic recommendations for the business.
+-   **Data Visualization:** Creating compelling charts and graphics to support statistical findings and enhance business recommendations.
 
 ### Navigate This Portfolio
 
 Use the menu above to:
 
-- Learn more [about me](about.html)
-- View my [projects](projects.html)
+-   Learn more [about me](about.html)
+-   View my [projects](projects.html)
 
----
+## Reach Me Further
+
+📧 Email: [oplehtovaara.university@gmail.com](mailto:oplehtovaara.university@gmail.com)
+💼 LinkedIn: [Owen Lehtovaara](https://linkedin.com/in/owen-lehtovaara-8852ab393)
+💻 GitHub: [oplehtovaara](https://github.com/oplehtovaara)
+
+------------------------------------------------------------------------
 
 *This portfolio was built using R Markdown and is hosted on GitHub Pages.*

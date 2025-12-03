@@ -200,4 +200,4 @@ executive_table
 
 **Recommendation:** Based on the large report above, and the data extracted from it, some conclusions can be withdrawn that may influence business decisions. The first main conclusion is that the northern region and fourth quarter are evidently the strongest performing in their respective categories. The northern quarter bolstered \$816,250 in revenue, and the fourth quarter had three records with over 130,000 dollars in revenue in addition to an average customer count of 482.33. This may indicate that those regions are doing just fine, and will require minimal adjustments to be made. Instead, looking at what made those regions successful and applying it to the weaker southern and western regions could improve company numbers overall, and increase revenue greatly.
 
-[← Back to Projects](projects.html) | [← Back to Home](index.html)
+[← Back to Projects](projects.html) | [← Back to Home 🏠](index.html)

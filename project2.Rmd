@@ -124,4 +124,4 @@ business_table
 
 **Strategic Recommendations:** Given the above table, we can derive a few recommendations. First, the 'Retail' channel needs to be generating more revenue. We can see that the average customer spends \~315 dollars with that channel (the highest customer conversion rate), though the total revenue is significantly lower (2,693,023); primarily due to the lesser volume of customers. As such, the main focus of this business should be driving more customers into the retail channel, where they may spend more money, and drive up profits. Ideally, increasing the customer conversion rates on both the 'Mobile' and 'Online' channels would be another focus of strategy. Due to the higher customer volume in both channels (203 and 224 respectively), increasing the conversion rate would generate a significant boost in profits for the business.
 
-[← Back to Projects](projects.html) | [← Back to Home](index.html)
+[← Back to Projects](projects.html) | [← Back to Home 🏠](index.html)
